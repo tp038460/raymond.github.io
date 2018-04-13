@@ -1,0 +1,100 @@
+﻿@model MaerskLineCMS.Models.scheduleBooking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>scheduleBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleDetail)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDeparture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleDeparture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleDepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDepartureTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleDepartureTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleArrival)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleArrival)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.scheduleArrivalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.scheduleArrivalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.requiredTEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.requiredTEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.scheduleBookingID }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

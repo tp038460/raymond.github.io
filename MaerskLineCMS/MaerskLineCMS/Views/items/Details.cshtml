@@ -1,0 +1,58 @@
+﻿@model MaerskLineCMS.Models.item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.itemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemVolume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemVolume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemMass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemMass)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.deliveryInvoice.deliveryInvoiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliveryInvoice.deliveryInvoiceID)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.itemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

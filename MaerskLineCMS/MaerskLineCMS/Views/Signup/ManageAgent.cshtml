@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MaerskLineCMS.Models.agent>
+
+@{
+    ViewBag.Title = "ManageAgent";
+}
+
+<h2>ManageAgent</h2>
+
+<p>
+    @Html.ActionLink("Create New Agent", "CreateNewAgent")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.agentUsername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agentPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agentEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agentIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agentGender)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.agentUsername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agentPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agentEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agentIC)
+        </td>
+        <td>
+            @((bool)(item.agentGender) ? "Male" : "Female")
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditAgent", new { id=item.agentID }) |
+            @Html.ActionLink("Details", "DetailsAgent", new { id=item.agentID }) |
+            @Html.ActionLink("Delete", "DeleteAgent", new { id=item.agentID })
+        </td>
+    </tr>
+}
+
+</table>

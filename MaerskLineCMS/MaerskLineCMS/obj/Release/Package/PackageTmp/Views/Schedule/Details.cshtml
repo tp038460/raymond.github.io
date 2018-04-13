@@ -1,0 +1,120 @@
+﻿@model MaerskLineCMS.Models.scheduleData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>schedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDeparture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDeparture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDepartureTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDepartureTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleArrival)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleArrival)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleArrivalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleArrivalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shipName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shipName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shipTEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shipTEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.requiredTEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.requiredTEU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.scheduleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

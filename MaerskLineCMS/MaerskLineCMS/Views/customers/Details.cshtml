@@ -1,0 +1,83 @@
+﻿@model MaerskLineCMS.Models.customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerGender)
+        </dt>
+
+        <dd>
+            @((bool)(ViewData.Model.customerGender) ? "Male" : "Female")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerPhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerPhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerAddressCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerAddressCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agent.agentUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agent.agentUsername)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.customerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

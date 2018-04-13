@@ -1,0 +1,126 @@
+﻿@model MaerskLineCMS.Models.scheduleData
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>schedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDeparture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDeparture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDepartureTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDepartureTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleArrival)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleArrival)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleArrivalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleArrivalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleDepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleDepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shipName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shipName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shipTEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shipTEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.requiredTEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.requiredTEU)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MaerskLineContainerManagementSystemModelStoreContainer" CdmEntityContainer="MaerskLineContainerManagementSystemEntities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="adminID" ColumnName="adminID" />
+          <ScalarProperty Name="adminUsername" ColumnName="adminUsername" />
+          <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+          <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
+          <ScalarProperty Name="adminName" ColumnName="adminName" />
+          <ScalarProperty Name="adminIC" ColumnName="adminIC" />
+          <ScalarProperty Name="adminGender" ColumnName="adminGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agents">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.agent">
+        <MappingFragment StoreEntitySet="agent">
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+          <ScalarProperty Name="agentUsername" ColumnName="agentUsername" />
+          <ScalarProperty Name="agentPassword" ColumnName="agentPassword" />
+          <ScalarProperty Name="agentEmail" ColumnName="agentEmail" />
+          <ScalarProperty Name="agentName" ColumnName="agentName" />
+          <ScalarProperty Name="agentIC" ColumnName="agentIC" />
+          <ScalarProperty Name="agentGender" ColumnName="agentGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="customerEmail" ColumnName="customerEmail" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="customerIC" ColumnName="customerIC" />
+          <ScalarProperty Name="customerGender" ColumnName="customerGender" />
+          <ScalarProperty Name="customerPhoneNo" ColumnName="customerPhoneNo" />
+          <ScalarProperty Name="customerAddress" ColumnName="customerAddress" />
+          <ScalarProperty Name="customerAddressCountry" ColumnName="customerAddressCountry" />
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="deliveryInvoices">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.deliveryInvoice">
+        <MappingFragment StoreEntitySet="deliveryInvoice">
+          <ScalarProperty Name="deliveryInvoiceID" ColumnName="deliveryInvoiceID" />
+          <ScalarProperty Name="scheduleBookingID" ColumnName="scheduleBookingID" />
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="invoiceTEU" ColumnName="invoiceTEU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="items">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.item">
+        <MappingFragment StoreEntitySet="item">
+          <ScalarProperty Name="itemID" ColumnName="itemID" />
+          <ScalarProperty Name="itemName" ColumnName="itemName" />
+          <ScalarProperty Name="itemCategory" ColumnName="itemCategory" />
+          <ScalarProperty Name="itemVolume" ColumnName="itemVolume" />
+          <ScalarProperty Name="itemMass" ColumnName="itemMass" />
+          <ScalarProperty Name="deliveryInvoiceID" ColumnName="deliveryInvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="schedules">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.schedule">
+        <MappingFragment StoreEntitySet="schedule">
+          <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
+          <ScalarProperty Name="scheduleDetail" ColumnName="scheduleDetail" />
+          <ScalarProperty Name="scheduleDeparture" ColumnName="scheduleDeparture" />
+          <ScalarProperty Name="scheduleDepartureDate" ColumnName="scheduleDepartureDate" />
+          <ScalarProperty Name="scheduleDepartureTime" ColumnName="scheduleDepartureTime" />
+          <ScalarProperty Name="scheduleArrival" ColumnName="scheduleArrival" />
+          <ScalarProperty Name="scheduleArrivalDate" ColumnName="scheduleArrivalDate" />
+          <ScalarProperty Name="scheduleArrivalTime" ColumnName="scheduleArrivalTime" />
+          <ScalarProperty Name="shipID" ColumnName="shipID" />
+          <ScalarProperty Name="adminID" ColumnName="adminID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scheduleBookings">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.scheduleBooking">
+        <MappingFragment StoreEntitySet="scheduleBooking">
+          <ScalarProperty Name="scheduleBookingID" ColumnName="scheduleBookingID" />
+          <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="requiredTEU" ColumnName="requiredTEU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ships">
+      <EntityTypeMapping TypeName="MaerskLineContainerManagementSystemModel.ship">
+        <MappingFragment StoreEntitySet="ship">
+          <ScalarProperty Name="shipID" ColumnName="shipID" />
+          <ScalarProperty Name="shipName" ColumnName="shipName" />
+          <ScalarProperty Name="shipTEU" ColumnName="shipTEU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,66 @@
+﻿@model MaerskLineCMS.Models.admin
+
+@{
+    ViewBag.Title = "DetailsAdmin";
+}
+
+<h2>DetailsAdmin</h2>
+
+<div>
+    <h4>admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.adminUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminUsername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adminGender)
+        </dt>
+
+        <dd>
+            @((bool)(ViewData.Model.adminGender) ? "Male" : "Female") 
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditAdmin", new { id = Model.adminID }) |
+    @Html.ActionLink("Back to List", "ManageAdmin")
+</p>

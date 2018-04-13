@@ -1,0 +1,97 @@
+﻿@model MaerskLineCMS.Models.deliveryInvoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>deliveryInvoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.deliveryInvoiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliveryInvoiceID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.agent.agentUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agent.agentUsername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleBooking.scheduleBookingID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleBookingID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleBooking.schedule.scheduleDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleBooking.schedule.scheduleDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleBooking.schedule.scheduleDeparture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleBooking.schedule.scheduleDeparture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleBooking.schedule.scheduleDepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleBooking.schedule.scheduleDepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleBooking.schedule.scheduleArrival)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleBooking.schedule.scheduleArrival)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduleBooking.schedule.scheduleArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scheduleBooking.schedule.scheduleArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.invoiceTEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.invoiceTEU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Item List", "itemlist", new { id = Model.deliveryInvoiceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MaerskLineContainerManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adminUsername" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="adminPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="adminEmail" Type="varchar" MaxLength="50" />
+    <Property Name="adminName" Type="varchar" MaxLength="100" />
+    <Property Name="adminIC" Type="char" MaxLength="12" />
+    <Property Name="adminGender" Type="bit" />
+  </EntityType>
+  <EntityType Name="agent">
+    <Key>
+      <PropertyRef Name="agentID" />
+    </Key>
+    <Property Name="agentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="agentUsername" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="agentPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="agentEmail" Type="varchar" MaxLength="50" />
+    <Property Name="agentName" Type="varchar" MaxLength="100" />
+    <Property Name="agentIC" Type="char" MaxLength="12" />
+    <Property Name="agentGender" Type="bit" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customerEmail" Type="varchar" MaxLength="50" />
+    <Property Name="customerName" Type="varchar" MaxLength="100" />
+    <Property Name="customerIC" Type="char" MaxLength="12" />
+    <Property Name="customerGender" Type="bit" />
+    <Property Name="customerPhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="customerAddress" Type="varchar" MaxLength="100" />
+    <Property Name="customerAddressCountry" Type="varchar" MaxLength="50" />
+    <Property Name="agentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="deliveryInvoice">
+    <Key>
+      <PropertyRef Name="deliveryInvoiceID" />
+    </Key>
+    <Property Name="deliveryInvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="scheduleBookingID" Type="int" Nullable="false" />
+    <Property Name="agentID" Type="int" Nullable="false" />
+    <Property Name="customerID" Type="int" Nullable="false" />
+    <Property Name="invoiceTEU" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="itemID" />
+    </Key>
+    <Property Name="itemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itemName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="itemCategory" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="itemVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="itemMass" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="deliveryInvoiceID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="scheduleID" />
+    </Key>
+    <Property Name="scheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="scheduleDetail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="scheduleDeparture" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="scheduleDepartureDate" Type="date" Nullable="false" />
+    <Property Name="scheduleDepartureTime" Type="time" Precision="0" Nullable="false" />
+    <Property Name="scheduleArrival" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="scheduleArrivalDate" Type="date" Nullable="false" />
+    <Property Name="scheduleArrivalTime" Type="time" Precision="0" Nullable="false" />
+    <Property Name="shipID" Type="int" Nullable="false" />
+    <Property Name="adminID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="scheduleBooking">
+    <Key>
+      <PropertyRef Name="scheduleBookingID" />
+    </Key>
+    <Property Name="scheduleBookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="scheduleID" Type="int" Nullable="false" />
+    <Property Name="agentID" Type="int" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="requiredTEU" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ship">
+    <Key>
+      <PropertyRef Name="shipID" />
+    </Key>
+    <Property Name="shipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="shipName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="shipTEU" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_customer_agent">
+    <End Role="agent" Type="Self.agent" Multiplicity="1" />
+    <End Role="customer" Type="Self.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agent">
+        <PropertyRef Name="agentID" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="agentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_deliveryInvoice_agent">
+    <End Role="agent" Type="Self.agent" Multiplicity="1" />
+    <End Role="deliveryInvoice" Type="Self.deliveryInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agent">
+        <PropertyRef Name="agentID" />
+      </Principal>
+      <Dependent Role="deliveryInvoice">
+        <PropertyRef Name="agentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_deliveryInvoice_customer">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="deliveryInvoice" Type="Self.deliveryInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="deliveryInvoice">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_deliveryInvoice_scheduleBooking">
+    <End Role="scheduleBooking" Type="Self.scheduleBooking" Multiplicity="1" />
+    <End Role="deliveryInvoice" Type="Self.deliveryInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="scheduleBooking">
+        <PropertyRef Name="scheduleBookingID" />
+      </Principal>
+      <Dependent Role="deliveryInvoice">
+        <PropertyRef Name="scheduleBookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_item_deliveryInvoice">
+    <End Role="deliveryInvoice" Type="Self.deliveryInvoice" Multiplicity="1" />
+    <End Role="item" Type="Self.item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="deliveryInvoice">
+        <PropertyRef Name="deliveryInvoiceID" />
+      </Principal>
+      <Dependent Role="item">
+        <PropertyRef Name="deliveryInvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_schedule_admin">
+    <End Role="admin" Type="Self.admin" Multiplicity="1" />
+    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="adminID" />
+      </Principal>
+      <Dependent Role="schedule">
+        <PropertyRef Name="adminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_schedule_ship">
+    <End Role="ship" Type="Self.ship" Multiplicity="1" />
+    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ship">
+        <PropertyRef Name="shipID" />
+      </Principal>
+      <Dependent Role="schedule">
+        <PropertyRef Name="shipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_scheduleBooking_agent">
+    <End Role="agent" Type="Self.agent" Multiplicity="1" />
+    <End Role="scheduleBooking" Type="Self.scheduleBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agent">
+        <PropertyRef Name="agentID" />
+      </Principal>
+      <Dependent Role="scheduleBooking">
+        <PropertyRef Name="agentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_scheduleBooking_schedule">
+    <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+    <End Role="scheduleBooking" Type="Self.scheduleBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="schedule">
+        <PropertyRef Name="scheduleID" />
+      </Principal>
+      <Dependent Role="scheduleBooking">
+        <PropertyRef Name="scheduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MaerskLineContainerManagementSystemModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="agent" EntityType="Self.agent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="deliveryInvoice" EntityType="Self.deliveryInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="item" EntityType="Self.item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="scheduleBooking" EntityType="Self.scheduleBooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ship" EntityType="Self.ship" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_customer_agent" Association="Self.FK_customer_agent">
+      <End Role="agent" EntitySet="agent" />
+      <End Role="customer" EntitySet="customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_deliveryInvoice_agent" Association="Self.FK_deliveryInvoice_agent">
+      <End Role="agent" EntitySet="agent" />
+      <End Role="deliveryInvoice" EntitySet="deliveryInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_deliveryInvoice_customer" Association="Self.FK_deliveryInvoice_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="deliveryInvoice" EntitySet="deliveryInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_deliveryInvoice_scheduleBooking" Association="Self.FK_deliveryInvoice_scheduleBooking">
+      <End Role="scheduleBooking" EntitySet="scheduleBooking" />
+      <End Role="deliveryInvoice" EntitySet="deliveryInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_item_deliveryInvoice" Association="Self.FK_item_deliveryInvoice">
+      <End Role="deliveryInvoice" EntitySet="deliveryInvoice" />
+      <End Role="item" EntitySet="item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_schedule_admin" Association="Self.FK_schedule_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="schedule" EntitySet="schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_schedule_ship" Association="Self.FK_schedule_ship">
+      <End Role="ship" EntitySet="ship" />
+      <End Role="schedule" EntitySet="schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_scheduleBooking_agent" Association="Self.FK_scheduleBooking_agent">
+      <End Role="agent" EntitySet="agent" />
+      <End Role="scheduleBooking" EntitySet="scheduleBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_scheduleBooking_schedule" Association="Self.FK_scheduleBooking_schedule">
+      <End Role="schedule" EntitySet="schedule" />
+      <End Role="scheduleBooking" EntitySet="scheduleBooking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

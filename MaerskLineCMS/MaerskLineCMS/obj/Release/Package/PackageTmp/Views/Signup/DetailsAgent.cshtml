@@ -1,0 +1,66 @@
+﻿@model MaerskLineCMS.Models.agent
+
+@{
+    ViewBag.Title = "DetailsAgent";
+}
+
+<h2>DetailsAgent</h2>
+
+<div>
+    <h4>agent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.agentUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agentUsername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agentPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agentPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agentEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agentEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agentIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agentIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agentGender)
+        </dt>
+
+        <dd>
+            @((bool)(ViewData.Model.agentGender) ? "Male" : "Female")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditAgent", new { id = Model.agentID }) |
+    @Html.ActionLink("Back to List", "ManageAgent")
+</p>

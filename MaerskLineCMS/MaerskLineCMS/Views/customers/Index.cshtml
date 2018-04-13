@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MaerskLineCMS.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.customerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerPhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerAddressCountry)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.agent.agentUsername)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerIC)
+        </td>
+        <td>
+            @((bool)(item.customerGender) ? "Male" : "Female")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerPhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerAddressCountry)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.agent.agentUsername)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.customerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.customerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.customerID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,50 @@
+﻿@model MaerskLineCMS.Models.admin
+@{
+    ViewBag.Title = "LoginAsAdmin";
+}
+
+<h2>Login As Admin</h2>
+
+@using (Html.BeginForm("LoginAsAdmin", "Admin", FormMethod.Post))
+{
+    <fieldset>
+
+        @Html.AntiForgeryToken()
+
+        @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+        {
+            <div class="row">
+                <div class="alert alert-danger col-md-12">
+                    <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    @Html.ValidationSummary(false, "Errors: ")
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(a => a.adminUsername) :
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(a => a.adminUsername)
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(a => a.adminPassword) :
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(a => a.adminPassword)
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+                <input class="btn btn-default " type="submit" value="Login" />
+            </div>
+        </div>
+    </fieldset>
+}

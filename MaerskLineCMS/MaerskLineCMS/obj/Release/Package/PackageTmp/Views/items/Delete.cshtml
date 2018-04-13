@@ -1,0 +1,65 @@
+﻿@model MaerskLineCMS.Models.item
+
+@{
+    ViewBag.Title = "Delete";
+    int invoiceid = ViewBag.invoiceid;
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.itemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemVolume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemVolume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemMass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemMass)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.deliveryInvoice.deliveryInvoiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliveryInvoice.deliveryInvoiceID)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index",new { id = invoiceid })
+        </div>
+    }
+</div>

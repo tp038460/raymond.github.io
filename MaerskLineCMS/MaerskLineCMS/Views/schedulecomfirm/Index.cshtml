@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MaerskLineCMS.Models.scheduleBooking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDetail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDeparture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.scheduleDepartureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.scheduleArrival)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.requiredTEU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.schedule.scheduleDetail)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.schedule.scheduleDeparture)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.schedule.scheduleDepartureDate)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.schedule.scheduleArrival)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.requiredTEU)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.status)
+        </th>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.scheduleBookingID })
+            @*@Html.ActionLink("Confirm", "Details", new { id = item.scheduleBookingID }) |
+        @Html.ActionLink("Reject", "Details2", new { id = item.scheduleBookingID }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.scheduleBookingID })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,62 @@
+﻿@model MaerskLineCMS.Models.deliveryInvoice
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Delivery Invoice</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.scheduleBookingID, "Schedule Booking ID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("scheduleBookingID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.scheduleBookingID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.agentID, "Agent ID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("agentID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.agentID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.customerID, "Customer ID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("customerID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.customerID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.invoiceTEU, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.invoiceTEU, new { htmlAttributes=new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.invoiceTEU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

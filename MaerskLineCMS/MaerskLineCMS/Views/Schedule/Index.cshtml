@@ -1,0 +1,289 @@
+﻿@model IEnumerable<MaerskLineCMS.Models.schedule>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<div class="btn-group form-group row" data-toggle="buttons">
+    <label class="btn btn-primary active">
+        <input type="radio" name="options" id="option1" checked > Calender
+    </label>
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="option2" > Table
+    </label>
+</div>
+
+<div class="form-group row" id="tablecon" style="display:none">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleDeparture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleDepartureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleDepartureTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleArrival)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleArrivalDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleArrivalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ship.shipName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.admin.adminUsername)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.scheduleDeparture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.scheduleDepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.scheduleDepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.scheduleArrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.scheduleArrivalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.scheduleArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ship.shipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.admin.adminUsername)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.scheduleID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.scheduleID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.scheduleID })
+            </td>
+        </tr>
+    }
+
+</table></div>
+
+<div id="calendercon">
+    <div id="calender"></div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <div id="pDetails"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new schedule</h4>
+            </div>
+            <div class="modal-body">
+                @{
+                    //Html.RenderAction("addSchedule");
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/Schedule/GetSchedule",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            scheduleID: v.scheduleID,
+                            scheduleDetail: v.scheduleDetail,
+                            scheduleDeparture: v.scheduleDeparture,
+                            scheduleArrival: v.scheduleArrival,
+                            shipID: v.shipID,
+                            shipName: v.shipName,
+                            shipTEU: v.shipTEU,
+                            requiredTEU: v.requiredTEU,
+                            adminID: v.adminID,
+                            scheduleDepartureDate: moment(v.scheduleDepartureDate),
+                            scheduleDepartureTime: moment(v.scheduleDepartureTime),
+                            scheduleArrivalDate: moment(v.scheduleArrivalDate),
+                            scheduleArrivalTime: moment(v.scheduleArrivalTime),
+                            start: moment(v.scheduleDepartureDate).add((v.scheduleDepartureTime)),
+                            end: moment(v.scheduleArrivalDate).add((v.scheduleArrivalTime))
+                        });
+                    })
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function GenerateCalender(events) {
+                $('#calender').fullCalendar('destroy');
+                $('#calender').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        //right: 'month, agendaWeek, agendaDay'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    nextDayThreshold: '00:00',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        $('#myModal #eventTitle').text(calEvent.title);
+                        var description = $('<div class="form-group row"><Label class="form-label col-md-2">Schedule Id: </Label><input disabled class="form-control input-sm col-md-4" id="scheduleID_' + calEvent.scheduleID + '" type="text" value="' +
+                            calEvent.scheduleID + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Detail: </Label><input class="form-control input-sm col-md-4" id="scheduleDetail_' + calEvent.scheduleID + '" type="text" value="' +
+                            calEvent.scheduleDetail + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Departure From: </Label><input class="form-control input-sm col-md-4" id="scheduleDeparture_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.scheduleDeparture + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Departure Date: </Label><input class="form-control input-sm col-md-4" id="scheduleDepartureDate_' + calEvent.scheduleID + '" type="date" value="' +
+                            calEvent.scheduleDepartureDate.format("YYYY-MM-DD") + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Departure Time: </Label><input class="form-control input-sm col-md-4" id="scheduleDepartureTime_' + calEvent.scheduleID + '" type="time" value="' +
+                            calEvent.scheduleDepartureTime.format("hh:mm") + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Arrival At: </Label><input class="form-control input-sm col-md-4" id="scheduleArrival_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.scheduleArrival + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Arrival Date: </Label><input class="form-control input-sm col-md-4" id="scheduleArrivalDate_' + calEvent.scheduleID + '" type="date" value="' +
+                            calEvent.scheduleArrivalDate.format("YYYY-MM-DD") + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Arrival Time: </Label><input class="form-control input-sm col-md-4" id="scheduleArrivalTime_' + calEvent.scheduleID + '" type="time" value="' +
+                            calEvent.scheduleArrivalTime.format("hh:mm") + '" /></div><div class="form-group row"><Label class="form-label col-md-2">Ship ID: </Label><input disabled class="form-control input-sm col-md-4" id="shipID_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.shipID + '"  /></div><div class="form-group row"><Label class="form-label col-md-2">Ship Name: </Label><input disabled class="form-control input-sm col-md-4" id="shipName_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.shipName + '"  /></div><div class="form-group row"><Label class="form-label col-md-2">Ship TEU : </Label><input disabled class="form-control input-sm col-md-4" id="shipTEU_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.shipTEU + '"  /></div><div class="form-group row"><Label class="form-label col-md-2">Ship TEU Used : </Label><input disabled class="form-control input-sm col-md-4" id="requiredTEU_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.requiredTEU + '"  /></div><div class="form-group row hidden"><Label class="form-label col-md-2">Admin : </Label><input disabled class="form-control input-sm col-md-4" id="adminID_' + calEvent.scheduleID + '"  type="text" value="' +
+                            calEvent.adminID + '"  /></div><div class="form-group"><input class="btn btn-info" type="button" value="Update" onclick="Update(' + calEvent.scheduleID + ')" />&nbsp<input class="btn btn-info" id="deletebutton" type= "button" value= "Delete" onclick= "Delete(' + calEvent.scheduleID + ')" /><button style="float:right;" type="button" class="btn btn-info" data-dismiss="modal">Close</button></div>"');
+                        $('#myModal #pDetails').empty().html(description);
+                        $('#myModal').modal();
+                    }
+                })
+            }
+        })
+
+        function Update(id) {
+            var tscheduleID = "#scheduleID_" + id;
+            var tscheduleDetail = "#scheduleDetail_" + id;
+            var tscheduleDeparture = "#scheduleDeparture_" + id;
+            var tscheduleDepartureDate = "#scheduleDepartureDate_" + id;
+            var tscheduleDepartureTime = "#scheduleDepartureTime_" + id;
+            var tscheduleArrival = "#scheduleArrival_" + id;
+            var tscheduleArrivalDate = "#scheduleArrivalDate_" + id;
+            var tscheduleArrivalTime = "#scheduleArrivalTime_" + id;
+            var tshipID = "#shipID_" + id;
+            var tadminID = "#adminID_" + id;
+
+            var scheduleID = $(tscheduleID).val();
+            var scheduleDetail = $(tscheduleDetail).val();
+            var scheduleDeparture = $(tscheduleDeparture).val();
+            var scheduleDepartureDate = $(tscheduleDepartureDate).val();
+            var scheduleDepartureTime = $(tscheduleDepartureTime).val();
+            var scheduleArrival = $(tscheduleArrival).val();
+            var scheduleArrivalDate = $(tscheduleArrivalDate).val();
+            var scheduleArrivalTime = $(tscheduleArrivalTime).val();
+            var shipID = $(tshipID).val();
+            var adminID = $(tadminID).val();
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Schedule/UpdateSchedule",
+                data: {
+                    scheduleID: scheduleID,
+                    scheduleDetail: scheduleDetail,
+                    scheduleDeparture: scheduleDeparture,
+                    scheduleDepartureDate: scheduleDepartureDate,
+                    scheduleDepartureTime: scheduleDepartureTime,
+                    scheduleArrival: scheduleArrival,
+                    scheduleArrivalDate: scheduleArrivalDate,
+                    scheduleArrivalTime: scheduleArrivalTime,
+                    shipID: shipID,
+                    adminID: adminID
+                },
+                success: function () {
+                    alert("Successfully Updated");
+                    location.reload();
+                },
+                error: function () {
+                    alert("error");
+                }
+            })
+        }
+
+        function Delete(id) {
+            if (confirm("Are you sure you want to delete?")) {
+                var tscheduleid = "#scheduleID_" + id;
+                var scheduleid = $(tscheduleid).val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Schedule/DeleteSchedule",
+                    data: { scheduleid: scheduleid },
+                    success: function () {
+                        alert("Successfully Deleted");
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                })
+            }
+            else
+                return false;
+        }
+
+        $('input:radio[name="options"]').change(
+            function () {
+                if (this.checked && this.id == 'option1') {
+                    $('#calendercon').show();
+                    $('#tablecon').hide();
+                }
+                if (this.checked && this.id == 'option2') {
+                    $('#calendercon').hide();
+                    $('#tablecon').show();
+                }
+            });
+
+
+    </script>
+}

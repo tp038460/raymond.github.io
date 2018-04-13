@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MaerskLineCMS.Models.deliveryInvoice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.deliveryInvoiceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agent.agentUsername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer.customerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleBooking.scheduleBookingID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.invoiceTEU)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.deliveryInvoiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agent.agentUsername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.customerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.scheduleBooking.scheduleBookingID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.invoiceTEU)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.deliveryInvoiceID }) |*@
+            @Html.ActionLink("Item List", "Detailsitem", new { id = item.deliveryInvoiceID })
+            |@Html.ActionLink("Back to List", "Index")
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.deliveryInvoiceID })*@
+        </td>
+    </tr>
+}
+
+</table>

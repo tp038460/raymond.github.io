@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Maersk Line CMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @if ((string)Session["UserCategory"] == "admin")
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage Member<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Manage Admin", "ManageAdmin", "SignUp")</li>
+                                <li>@Html.ActionLink("Manage Agent", "ManageAgent", "SignUp")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage Schedule<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Schedule", "Index", "Schedule")</li>
+                                <li>@Html.ActionLink("Comfirm Schedule", "Index", "schedulecomfirm")</li>
+                                <li>@Html.ActionLink("View Schedule Invoice", "Index", "viewscheduleinvoice")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if ((string)Session["UserCategory"] == "agent")
+                    {
+                        <li>@Html.ActionLink("Booking Schedule", "index", "schedulebookings")</li>
+                        <li>@Html.ActionLink("Customer", "index", "customers")</li>
+                        <li>@Html.ActionLink("Invoice", "index", "deliveryinvoices")</li>
+                    }
+                </ul>
+                @if (Session["UserID"] == null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Login as Admin", "LoginAsAdmin", "Admin")</li>
+                                <li>@Html.ActionLink("Login as Agent", "LoginAsAgent", "Agent")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text">Welcome, @Session["UserName"]</li>
+                        <li>@Html.ActionLink("LogOut", "Logout", "Home")</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <div class="col-lg-12 row">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Maersk Line Container Management System</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
